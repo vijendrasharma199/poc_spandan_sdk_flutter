@@ -1,0 +1,55 @@
+buildscript {
+    ext.kotlin_version = '1.8.10'
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.2.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+
+        maven {
+            url = uri("https://maven.pkg.github.com/sunfox-technologies/ecg_processor")
+            credentials {
+                username = "enter repo username"
+                password = "enter repo token"
+            }
+        }
+
+        maven {
+            url = uri("https://maven.pkg.github.com/sunfox-technologies/spandan_ecg_android_sdk")
+            credentials {
+                username = "enter repo username"
+                password = "enter repo token"
+            }
+        }
+
+        maven {
+            url = uri("https://maven.pkg.github.com/sunfox-technologies/sericom")
+            credentials {
+                username = "enter repo username"
+                password = "enter repo token"
+            }
+        }
+    }
+}
+
+rootProject.buildDir = '../build'
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(':app')
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}
