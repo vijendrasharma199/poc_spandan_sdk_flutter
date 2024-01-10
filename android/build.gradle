@@ -31,14 +31,6 @@ allprojects {
                 password = "enter repo token"
             }
         }
-
-        maven {
-            url = uri("https://maven.pkg.github.com/sunfox-technologies/sericom")
-            credentials {
-                username = "enter repo username"
-                password = "enter repo token"
-            }
-        }
     }
 }
 
